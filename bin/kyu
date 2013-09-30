@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/kyu'
+require 'daemons'
+
+root = Dir.pwd
+marker = ARGV.index( '--' )
+raise ArgumentError, 'Queue name cannot be nil' if marker.nil?
+_, queue_name, filename = ARGV.slice!( marker..-1 )
+raise ArgumentError, 'Queue name cannot be nil' if marker.nil?
+
+Daemons.run_proc( queue_name, {} ) do
+  raise ArgumentError, 'Filename cannot be nil' if filename.nil?
+
+  load( File.join( root, filename ) )
+  infered_class = Kyu.infer_class_from_filename( filename )
+
+  infered_class.start( queue_name )
+end
