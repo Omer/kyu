@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Kyu::VERSION
   spec.authors       = ["Omer Jakobinsky"]
   spec.email         = ["omer@jakobinsky.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{SQS background processing for Ruby}
+  spec.summary       = %q{A simple background processing for Ruby backed by SQS}
   spec.homepage      = ""
   spec.license       = "MIT"
 
