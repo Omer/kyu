@@ -1,4 +1,3 @@
-require 'eventmachine'
 require 'aws-sdk'
 require 'logger'
 require 'json'
