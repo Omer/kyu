@@ -37,21 +37,21 @@ class ImageResizerWorker
 end
 ```
 
-`kyu start -- image_resize_worker.rb image_resizing`
+`kyu start -- image_resizing image_resize_worker.rb`
 
 # image_resize_postman.rb
 ```ruby
 #!/usr/bin/env ruby
 require 'kyu'
 
-class ImageResizerPostman
+class ImageResizePostman
   include Kyu::Postman
 
   queue_name 'image_resizing'
 end
 
 if __FILE__ == $PROGRAM_NAME
-  ImageResizerWorker.send_message( url: ARGV[0], width: ARGV[1], height: ARGV[2] )
+  ImageResizePostman.send_message( url: ARGV[0], width: ARGV[1], height: ARGV[2] )
 end
 ```
 
