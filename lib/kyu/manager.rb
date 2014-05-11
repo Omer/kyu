@@ -47,7 +47,7 @@ module Kyu
           msg.delete
           @logger.info( "Finished processing: '#{msg.body}'" )
         rescue => err
-          @logger.error( stringify_exception( err ) )
+          @logger.error( Kyu.stringify_exception( err ) )
           @error_callback.call( err )
           if msg.receive_count > @max_retries
             @logger.info( "Max number of reties exceeded for: '#{msg.body}'. Migrating the message to the dead-letter queue." )

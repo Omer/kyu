@@ -17,7 +17,7 @@ if RUBY_VERSION < '2'
 end
 
 module Kyu
-  def stringify_exception( exception )
+  def self.stringify_exception( exception )
     backtrace = exception.backtrace.join( ' | ' )
     "(#{exception.class}) #{exception.message}; <trace>#{backtrace}</trace>"
   end
