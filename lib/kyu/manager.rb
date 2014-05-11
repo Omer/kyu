@@ -1,5 +1,3 @@
-require 'timeout'
-
 module Kyu
   class Manager
     def initialize( worker_klass, queue_name, options={} )

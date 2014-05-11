@@ -1,6 +1,8 @@
+require 'eventmachine'
 require 'aws-sdk'
 require 'logger'
 require 'json'
+require 'timeout'
 
 require_relative 'kyu/version'
 require_relative 'kyu/worker'
