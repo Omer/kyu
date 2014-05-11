@@ -9,8 +9,17 @@ module Kyu
       @worker_klass = worker_klass
 
       sqs = AWS::SQS.new
-      @queue = sqs.queues.create( queue_name, queue_options )
       @dl_queue = sqs.queues.create( deadletter_queue_name_for( queue_name ), queue_options )
+      @queue = sqs.queues.create( queue_name, queue_options )
+      @queue.client.set_queue_attributes(
+        queue_url: @queue.url,
+        attributes: {
+          "RedrivePolicy" => {
+            "maxReceiveCount" => @max_retries,
+            "deadLetterTargetArn" => @dl_queue.arn
+          }.to_json
+        }
+      )
     end
 
     def start
@@ -59,7 +68,7 @@ module Kyu
     end
 
     def deadletter_queue_name_for( queue_name )
-      queue_name + '_deadletter'
+      queue_name + '_DeadLetter'
     end
   end
 end
